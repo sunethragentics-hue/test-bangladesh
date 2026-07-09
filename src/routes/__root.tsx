@@ -77,11 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "AI West Bengal Coastal Tourism Climate Forecasting" },
+      {
+        name: "description",
+        content:
+          "AI-driven tourism climate forecasting for West Bengal's coastal destinations — Digha, Mandarmani and Sundarban. Get TCI, HCI and TIS scores with booking recommendations.",
+      },
+      { name: "author", content: "West Bengal Coastal Tourism" },
+      { property: "og:title", content: "AI West Bengal Coastal Tourism Climate Forecasting" },
+      {
+        property: "og:description",
+        content:
+          "Intelligent climate predictions for Digha, Mandarmani and Sundarban with detailed booking guidance.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
