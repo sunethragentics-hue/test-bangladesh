@@ -88,11 +88,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Intelligent climate predictions for Digha, Mandarmani and Sundarban with detailed booking guidance.",
+          "AI-driven tourism climate forecasting for West Bengal's coastal destinations — Digha, Mandarmani and Sundarban. Get TCI, HCI and TIS scores with booking recommendations.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "AI West Bengal Coastal Tourism Climate Forecasting" },
+      { name: "twitter:description", content: "AI-driven tourism climate forecasting for West Bengal's coastal destinations — Digha, Mandarmani and Sundarban. Get TCI, HCI and TIS scores with booking recommendations." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3a90dfed-f236-48f7-ad3d-9614552bb3f1/id-preview-3925722a--35dc5719-dd2d-4223-91ae-c330aaa48f0c.lovable.app-1783580099324.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3a90dfed-f236-48f7-ad3d-9614552bb3f1/id-preview-3925722a--35dc5719-dd2d-4223-91ae-c330aaa48f0c.lovable.app-1783580099324.png" },
     ],
     links: [
       {
