@@ -460,9 +460,9 @@ export default function ForecastApp() {
                       className="w-full appearance-none bg-white border-2 border-ocean-200 rounded-xl px-4 py-3 pr-10 text-ocean-800 font-medium focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 transition-all cursor-pointer"
                     >
                       <option value="">Choose location...</option>
-                      <option value="digha">Digha</option>
-                      <option value="mandarmani">Mandarmani</option>
-                      <option value="sundarban">Sundarban</option>
+                      <option value="digha">Cox's Bazar</option>
+                      <option value="mandarmani">Kuakata</option>
+                      <option value="sundarban">Satkhira</option>
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-ocean-400 pointer-events-none" />
                   </div>
