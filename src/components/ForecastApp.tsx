@@ -313,7 +313,12 @@ export default function ForecastApp() {
     setTimeout(() => {
       const d = parseDate(date);
       const m: ClimateMonth = climate[location][String(d.month)];
-      const s = statusFor(m.tis);
+      // Apply yearly TCI/HCI/TIS override for future years (2026-2036) if present
+      const yearly = getYearlyForecast(location, d.year);
+      const tci = yearly ? yearly.tci : m.tci;
+      const hci = yearly ? yearly.hci : m.hci;
+      const tis = yearly ? yearly.tis : m.tis;
+      const s = statusFor(tis);
       setPrediction({
         location: destinations[location].name,
         locationKey: location,
@@ -321,9 +326,9 @@ export default function ForecastApp() {
         year: d.year,
         month: d.month,
         monthName: d.monthName,
-        tci: m.tci,
-        hci: m.hci,
-        tis: m.tis,
+        tci,
+        hci,
+        tis,
         temperature: m.temperature,
         humidity: m.humidity,
         rainfall: m.rainfall,
@@ -339,7 +344,7 @@ export default function ForecastApp() {
         bookingAdvice: s.bookingAdvice,
         bookingColor: s.bookingColor,
       });
-      setAlternatives(m.tis < 80 ? findAlternatives(d.month, m.tis) : []);
+      setAlternatives(tis < 80 ? findAlternatives(d.month, tis) : []);
       setLoading(false);
     }, 1500);
   };
