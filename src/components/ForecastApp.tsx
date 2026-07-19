@@ -42,6 +42,7 @@ import {
   ranking,
   type ClimateMonth,
 } from "@/data/coastal";
+import { getYearlyForecast } from "@/data/yearly";
 
 const MONTHS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
