@@ -42,6 +42,7 @@ import {
   ranking,
   type ClimateMonth,
 } from "@/data/coastal";
+import { getYearlyForecast } from "@/data/yearly";
 
 const MONTHS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -312,7 +313,12 @@ export default function ForecastApp() {
     setTimeout(() => {
       const d = parseDate(date);
       const m: ClimateMonth = climate[location][String(d.month)];
-      const s = statusFor(m.tis);
+      // Apply yearly TCI/HCI/TIS override for future years (2026-2036) if present
+      const yearly = getYearlyForecast(location, d.year);
+      const tci = yearly ? yearly.tci : m.tci;
+      const hci = yearly ? yearly.hci : m.hci;
+      const tis = yearly ? yearly.tis : m.tis;
+      const s = statusFor(tis);
       setPrediction({
         location: destinations[location].name,
         locationKey: location,
@@ -320,9 +326,9 @@ export default function ForecastApp() {
         year: d.year,
         month: d.month,
         monthName: d.monthName,
-        tci: m.tci,
-        hci: m.hci,
-        tis: m.tis,
+        tci,
+        hci,
+        tis,
         temperature: m.temperature,
         humidity: m.humidity,
         rainfall: m.rainfall,
@@ -338,7 +344,7 @@ export default function ForecastApp() {
         bookingAdvice: s.bookingAdvice,
         bookingColor: s.bookingColor,
       });
-      setAlternatives(m.tis < 80 ? findAlternatives(d.month, m.tis) : []);
+      setAlternatives(tis < 80 ? findAlternatives(d.month, tis) : []);
       setLoading(false);
     }, 1500);
   };
@@ -410,9 +416,15 @@ export default function ForecastApp() {
                 <div className="absolute inset-0 opacity-20" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(255,200,100,0.08) 100%)" }} />
               </div>
               <div className="relative z-10 py-10 sm:py-14 px-6 sm:px-10 text-center">
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-                  <span className="text-teal-200 text-xs font-semibold tracking-wider uppercase">West Bengal Coastal Tourism</span>
+                <div className="flex justify-center mb-5">
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-white/30 w-24 h-24 sm:w-28 sm:h-28">
+                    <img
+                      src="https://images.pexels.com/photos/1032650/pexels-photo-1032650.jpeg?auto=compress&cs=tinysrgb&w=400"
+                      alt="Coastal beach"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-teal-500/30 to-transparent" />
+                  </div>
                 </div>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
                   AI Driven Future Tourism
@@ -420,10 +432,10 @@ export default function ForecastApp() {
                   <span className="text-teal-300">Climate Forecasting</span>
                 </h1>
                 <p className="text-base sm:text-lg lg:text-xl text-slate-200 max-w-3xl mx-auto drop-shadow">
-                  Intelligent climate predictions for Digha · Mandarmani · Sundarban
+                  Intelligent climate predictions for Cox's Bazar · Kuakata · Satkhira
                 </p>
                 <div className="flex flex-wrap justify-center gap-3 mt-6">
-                  {["Digha Beach", "Mandarmani", "Sundarban Forest"].map((v) => (
+                  {["Cox's Bazar Beach", "Kuakata", "Satkhira Sundarbans"].map((v) => (
                     <span key={v} className="px-3 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs font-medium">
                       {v}
                     </span>
@@ -453,9 +465,9 @@ export default function ForecastApp() {
                       className="w-full appearance-none bg-white border-2 border-ocean-200 rounded-xl px-4 py-3 pr-10 text-ocean-800 font-medium focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 transition-all cursor-pointer"
                     >
                       <option value="">Choose location...</option>
-                      <option value="digha">Digha</option>
-                      <option value="mandarmani">Mandarmani</option>
-                      <option value="sundarban">Sundarban</option>
+                      <option value="digha">Cox's Bazar</option>
+                      <option value="mandarmani">Kuakata</option>
+                      <option value="sundarban">Satkhira</option>
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-ocean-400 pointer-events-none" />
                   </div>
