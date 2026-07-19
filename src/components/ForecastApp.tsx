@@ -416,16 +416,6 @@ export default function ForecastApp() {
                 <div className="absolute inset-0 opacity-20" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(255,200,100,0.08) 100%)" }} />
               </div>
               <div className="relative z-10 py-10 sm:py-14 px-6 sm:px-10 text-center">
-                <div className="flex justify-center mb-5">
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-white/30 w-24 h-24 sm:w-28 sm:h-28">
-                    <img
-                      src="https://images.pexels.com/photos/1032650/pexels-photo-1032650.jpeg?auto=compress&cs=tinysrgb&w=400"
-                      alt="Coastal beach"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-teal-500/30 to-transparent" />
-                  </div>
-                </div>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
                   AI Driven Future Tourism
                   <br />
@@ -808,14 +798,6 @@ export default function ForecastApp() {
                 </div>
               ) : (
                 <div className="bg-white/90 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/50 text-center">
-                  <div className="inline-flex items-center justify-center mb-6">
-                    <div className="relative">
-                      <div className="absolute -inset-4 bg-teal-400/20 rounded-full blur-2xl animate-pulse" />
-                      <div className="relative bg-gradient-to-br from-teal-500 to-ocean-600 rounded-full p-6 sm:p-8 shadow-lg">
-                        <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-pulse" />
-                      </div>
-                    </div>
-                  </div>
                   <h2 className="text-xl sm:text-2xl font-bold text-ocean-800 mb-3">Tourism Climate Forecasting</h2>
                   <p className="text-ocean-600 max-w-md mx-auto mb-6 text-sm sm:text-base">
                     Select a destination and date to receive AI-driven climate predictions with detailed booking recommendations.
